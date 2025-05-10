@@ -1,0 +1,134 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-1591304882
+[JLinkDriver]
+CStepIntDis=_ 0
+TraceBufferSize=0x00010000
+TraceStallIfFIFOFull=0x00000000
+TracePortSize=0x00000000
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[SWOTraceHWSettings]
+OverrideDefaultClocks=0
+CpuClock=72000000
+ClockAutoDetect=0
+ClockWanted=2000000
+JtagSpeed=2000000
+Prescaler=36
+TimeStampPrescIndex=0
+TimeStampPrescData=0
+PcSampCYCTAP=1
+PcSampPOSTCNT=15
+PcSampIndex=0
+DataLogMode=0
+ITMportsEnable=0
+ITMportsTermIO=0
+ITMportsLogFile=0
+ITMlogFile=$PROJ_DIR$\ITM.log
+[struct_types]
+Fmt0=Logo_Param_Set_-b_val	4	0
+Fmt1=Logo_Param_Set_-baudrate_val	4	0
+Fmt2=Logo_Param_Set_-g_val	4	0
+Fmt3=Logo_Param_Set_-r_val	4	0
+[array_types]
+Fmt0=uint8_t[20]	4	0
+[watch_formats]
+Fmt0={W}42:SENSORTPYE	4	0
+Fmt1={W}42:rgb_num	3	0
+Fmt2={W}42:temp	1	0
+Fmt3={W}42:test_b	3	0
+Fmt4={W}42:test_g	3	0
+Fmt5={W}42:test_r	3	0
+[Trace1]
+Enabled=0
+ShowSource=1
+[Trace2]
+Enabled=0
+ShowSource=0
+[SWOTraceWindow]
+PcSampling=0
+InterruptLogs=0
+ForcedTimeStamps=0
+EventCPI=0
+EventEXC=0
+EventFOLD=0
+EventLSU=0
+EventSLEEP=0
+[PowerLog]
+Title_0=I0
+Symbol_0=0 4 1
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+LiveEnabled=0
+LiveFile=PowerLogLive.log
+[DataLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+[EventLog]
+Title_0=Ch3
+Symbol_0=0 4 1
+Title_1=Ch2
+Symbol_1=0 4 1
+Title_2=Ch1
+Symbol_2=0 4 1
+Title_3=Ch0
+Symbol_3=0 4 1
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+SumSortOrder=0
+[InterruptLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+SumSortOrder=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[CallStackStripe]
+ShowTiming=1
+[PowerProbe]
+Frequency=10000
+Probe0=I0
+ProbeSetup0=2 1 1 2 0 0
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Count=0
+[Aliases]
+A0=_ "E:\stm32f030f4p6\code\STM32F0xx_StdPeriph_Lib_V1.6.0\Projects\STM32F0xx_StdPeriph_Templates\main.c" ""
+A1=_ "E:\stm32f030f4p6开发\code\STM32F0xx_StdPeriph_Lib_V1.6.0\Projects\STM32F0xx_StdPeriph_Templates\main.c" ""
+A2=_ "E:\stm32f030f4p6开发\code\STM32F0xx_StdPeriph_Lib_V1.6.0\Projects\source\src\ws2812_drv.c" ""
+A3=_ "E:\sunhuajun\小项目\OLED\code\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\main.c" ""
+Count=4
+SuppressDialog=1
