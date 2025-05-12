@@ -1,20 +1,20 @@
-"D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\main.c"
+"E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\main.c"
 -std=c99
 -ferror-limit=100
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\CMSIS\Device\ST\STM32F0xx\Include
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\CMSIS\Device\ST\STM32F0xx\Include
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\STM32F0xx_StdPeriph_Driver\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\STM32F0xx_StdPeriph_Driver\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\STM32F0xx_CPAL_Driver\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\..\Libraries\STM32F0xx_CPAL_Driver\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\ICM42670P\APP\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\ICM42670P\APP\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\ICM42670P\IMU\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\..\..\source\ICM42670P\IMU\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\CMSIS\Include
 -I
@@ -22,19 +22,19 @@ C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\inc\c
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Libraries\CMSIS\Device\ST\STM32F0xx\Include
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Libraries\CMSIS\Device\ST\STM32F0xx\Include
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Libraries\STM32F0xx_StdPeriph_Driver\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Libraries\STM32F0xx_StdPeriph_Driver\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Libraries\STM32F0xx_CPAL_Driver\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Libraries\STM32F0xx_CPAL_Driver\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\source\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\source\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\source\ICM42670P\APP\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\source\ICM42670P\APP\inc
 -I
-D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\source\ICM42670P\IMU\inc
+E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\source\ICM42670P\IMU\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\CMSIS\Include
 -DUSE_STDPERIPH_DRIVER=1

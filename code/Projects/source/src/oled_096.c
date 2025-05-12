@@ -37,7 +37,7 @@ void OLED_WriteByte(uint8_t dat, uint8_t mode)
 * Function Name : OLED_SetCursor
 * Date          : 2025/02/21
 * Creator       : shj       
-* Description   : 设定OLED起始光标位置
+* Description   : 页地址模式，设定OLED起始光标位置
 * Input         : None
 * Output        : None
 * Return        : None
@@ -45,8 +45,39 @@ void OLED_WriteByte(uint8_t dat, uint8_t mode)
 void OLED_SetCursor(uint8_t Y, uint8_t X)
 {
     OLED_WriteByte(0xB0 | Y, OLED_CMD);             //设置Y位置
-    OLED_WriteByte(0x10 | (X & 0xF0), OLED_CMD);    //设置X位置高四位
+    OLED_WriteByte(0x10 | (X & 0x0F), OLED_CMD);    //设置X位置高四位
     OLED_WriteByte(0x00 | (X & 0x0F), OLED_CMD);    //设置X位置低四位
+}
+
+/*******************************************************************************
+* Function Name : OLED_SetColumnAddr
+* Date          : 2025/02/21
+* Creator       : shj       
+* Description   : 水平/垂直地址模式，设定列开始和结束地址
+* Input         : None
+* Output        : None
+* Return        : None
+*******************************************************************************/
+void OLED_SetColumnAddr(uint8_t start_addr, uint8_t end_addr)
+{
+    OLED_WriteByte(0x21, OLED_CMD);             
+    OLED_WriteByte(start_addr, OLED_CMD);    
+    OLED_WriteByte(end_addr, OLED_CMD);    
+}
+/*******************************************************************************
+* Function Name : OLED_SetPageAddr
+* Date          : 2025/02/21
+* Creator       : shj       
+* Description   : 水平/垂直地址模式，设定页开始和结束地址
+* Input         : None
+* Output        : None
+* Return        : None
+*******************************************************************************/
+void OLED_SetPageAddr(uint8_t start_addr, uint8_t end_addr)
+{
+    OLED_WriteByte(0x22, OLED_CMD);             
+    OLED_WriteByte(start_addr, OLED_CMD);    
+    OLED_WriteByte(end_addr, OLED_CMD);    
 }
 
 /*******************************************************************************
@@ -60,17 +91,24 @@ void OLED_SetCursor(uint8_t Y, uint8_t X)
 *******************************************************************************/
 void OLED_Clear(void)
 {
-    uint8_t i = 0, j = 0;
-	for (j = 0; j < 8; j++) 
-    {
-        /*0~7页*/
-		OLED_SetCursor(j, i);//选择起始光点
-		for(i = 0; i < 128; i++) 
-        {
-            /*0~127列*/
-			OLED_WriteByte(0x00, OLED_DATA);//写入数据
-		}
-	}    
+//    uint8_t i = 0, j = 0;
+//	for (j = 0; j < 8; j++) 
+//    {
+//        /*0~7页*/
+//		OLED_SetCursor(j, i);//选择起始光点
+//		for(i = 0; i < 128; i++) 
+//        {
+//            /*0~127列*/
+//			OLED_WriteByte(0x00, OLED_DATA);//写入数据
+//		}
+//	}   
+  uint16_t i = 0;
+  OLED_SetColumnAddr(0x00, 0x7f);
+  OLED_SetPageAddr(0x00, 0x07);
+  for (i = 0; i < 1024; i++)
+  {
+    OLED_WriteByte(0x00, OLED_DATA);
+  }
 }
 
 /*******************************************************************************
@@ -120,7 +158,7 @@ void OLED_Init(void)
     OLED_WriteByte(0x40, OLED_CMD);//推荐值
     
     OLED_WriteByte(0x20, OLED_CMD);//设置内存寻址模式    
-    OLED_WriteByte(0x02, OLED_CMD);//page寻址模式
+    OLED_WriteByte(0x00, OLED_CMD);//水平寻址模式
     
     OLED_WriteByte(0x8d, OLED_CMD);//设置电荷泵
     OLED_WriteByte(0x14, OLED_CMD);//启动电荷泵
@@ -128,6 +166,174 @@ void OLED_Init(void)
     OLED_Clear();                  //清屏
     OLED_WriteByte(0xaf, OLED_CMD);//开显示
 //    OLED_WriteByte(0xa5, OLED_CMD);//全屏点亮
+}
+/*******************************************************************************
+* Function Name : Gyro_Menu_Show
+* Date          : 2025/02/21
+* Creator       : shj       
+* Description   : Gyro 参数菜单显示
+* Input         : None
+* Output        : None
+* Return        : None
+*******************************************************************************/
+void Gyro_Menu_Show(void)
+{
+    uint8_t i = 0, j = 0;
+    OLED_SetColumnAddr(0x00, 0x37);
+      OLED_SetPageAddr(0x00,0x01);
+      for (i = 0; i < 7; i++)
+      {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Gyrox_DataBuffer[i][j], OLED_DATA);
+        }
+      }
+      for (i = 0; i < 7; i++)
+      {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Gyrox_DataBuffer[i][j], OLED_DATA);
+        }
+      }
+    OLED_SetColumnAddr(0x00, 0x37);
+    OLED_SetPageAddr(0x02,0x03);
+    for (i = 0; i < 7; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Gyroy_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 7; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Gyroy_DataBuffer[i][j], OLED_DATA);
+        }
+    } 
+    OLED_SetColumnAddr(0x00, 0x37);
+    OLED_SetPageAddr(0x04,0x05);
+    for (i = 0; i < 7; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Gyroz_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 7; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Gyroz_DataBuffer[i][j], OLED_DATA);
+        }
+    }     
+}
+/*******************************************************************************
+* Function Name : Accel_Menu_Show
+* Date          : 2025/02/21
+* Creator       : shj       
+* Description   : Accel 参数菜单显示
+* Input         : None
+* Output        : None
+* Return        : None
+*******************************************************************************/
+void Accel_Menu_Show(void)
+{
+    uint8_t i = 0, j = 0;
+    OLED_SetColumnAddr(0x00, 0x3f);
+    OLED_SetPageAddr(0x00,0x01);
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Accelx_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Accelx_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    OLED_SetColumnAddr(0x00, 0x3f);
+    OLED_SetPageAddr(0x02,0x03);
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Accely_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Accely_DataBuffer[i][j], OLED_DATA);
+        }
+    } 
+    OLED_SetColumnAddr(0x00, 0x3f);
+    OLED_SetPageAddr(0x04,0x05);
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Accelz_DataBuffer[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 8; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Accelz_DataBuffer[i][j], OLED_DATA);
+        }
+    }    
+}
+
+/*******************************************************************************
+* Function Name : Angel_Menu_Show
+* Date          : 2025/02/21
+* Creator       : shj       
+* Description   : 角度 参数菜单显示
+* Input         : None
+* Output        : None
+* Return        : None
+*******************************************************************************/
+void Angel_Menu_Show(void)
+{
+uint8_t i = 0, j = 0;
+    OLED_SetColumnAddr(0x00, 0x5f);
+    OLED_SetPageAddr(0x00,0x01);
+    for (i = 0; i < 12; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Angle_Menu[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 12; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Angle_Menu[i][j], OLED_DATA);
+        }
+    }
+    OLED_SetColumnAddr(0x00, 0x57);
+    OLED_SetPageAddr(0x02,0x03);
+    for (i = 0; i < 11; i++)
+    {
+        for (j = 0; j < 8; j++)
+        {
+            OLED_WriteByte(Roll_Menu[i][j], OLED_DATA);
+        }
+    }
+    for (i = 0; i < 11; i++)
+    {
+        for (j = 8; j < 16; j++)
+        {
+            OLED_WriteByte(Roll_Menu[i][j], OLED_DATA);
+        }
+    }     
 }
 
 /*******************************************************************************
@@ -148,101 +354,13 @@ void Test_OLEDShow(void)
     {
     case SHOW_GYRO:     
       
-      for (j = 0; j < 6; j++) 
-      {
-          /*0~7页*/
-          i = 0;
-		  OLED_SetCursor(j, i);//选择起始光点
-		  for(i = 0; i < 56; i++) 
-          {
-              /*0~127列*/
-			  OLED_WriteByte(Gyro_Menu[j][i], OLED_DATA);//写入数据
-		  }
-	  }
-      
-      
+      Gyro_Menu_Show();
       break;
     case SHOW_ACCEL:
-      for (j = 0; j < 6; j++) 
-      {
-          /*0~7页*/
-          i = 0;
-		  OLED_SetCursor(j, i);//选择起始光点
-		  for(i = 0; i < 64; i++) 
-          {
-              /*0~127列*/
-			  OLED_WriteByte(Accel_Menu[j][i], OLED_DATA);//写入数据
-		  }
-	  }
+        Accel_Menu_Show();
       break;
     case SHOW_PITCH:      
-      ge = abs(scooter_gyro.angle_pitch)%10;
-      shi = abs(scooter_gyro.angle_pitch)/10;
-      for (j = 0; j < 2; j++) 
-      {
-          /*0~7页*/
-          i = 0;
-		  OLED_SetCursor(j, i);//选择起始光点
-		  for (i = 0; i < 96; i++) 
-          {
-              /*0~127列*/
-			  OLED_WriteByte(Angle_Menu[j][i], OLED_DATA);//写入数据
-		  }
-          /*具体数据*/
-          if (j == 0)
-          {                     
-            /*正负号*/
-              if (scooter_gyro.angle_pitch >= 0)
-              {
-                  for (i = 0; i < 8; i++)
-                  {
-                      OLED_WriteByte(Direction_Buffer[0][i], OLED_DATA);
-                  }
-              }
-              else
-              {
-                  for (i = 0; i < 8; i++)
-                  {
-                      OLED_WriteByte(Direction_Buffer[1][i], OLED_DATA);
-                  }
-              }
-              /*角度：十位*/
-              for (i = 0; i < 8; i++)
-              {
-                  OLED_WriteByte(Number_Buffer[shi][i], OLED_DATA);
-              }  
-              /*角度：个位*/
-              for (i = 0; i < 8; i++)
-              {
-                  OLED_WriteByte(Number_Buffer[ge][i], OLED_DATA);
-              } 
-          }
-          if (j == 1)
-          {
-              if (scooter_gyro.angle_pitch >= 0)
-              {
-                  for (i = 8; i < 16; i++)
-                  {
-                      OLED_WriteByte(Direction_Buffer[0][i], OLED_DATA);
-                  }
-              }
-              else
-              {
-                  for (i = 8; i < 16; i++)
-                  {
-                      OLED_WriteByte(Direction_Buffer[1][i], OLED_DATA);
-                  }
-              }
-              for (i = 8; i < 16; i++)
-              {
-                  OLED_WriteByte(Number_Buffer[shi][i], OLED_DATA);
-              }
-              for (i = 8; i < 16; i++)
-              {
-                  OLED_WriteByte(Number_Buffer[ge][i], OLED_DATA);
-              }
-          }
-	  }
+      Angel_Menu_Show();
       break;
     default:break;
     }

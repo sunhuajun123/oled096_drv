@@ -25,7 +25,7 @@ if not "%1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.general.xcl" --backend -f "D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.general.xcl" --backend -f "E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.general.xcl" "--debug_file=%1" --backend -f "D:\harkinsun\program\OLED-0.96\OLED_drv\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.general.xcl" "--debug_file=%1" --backend -f "E:\sunhuajun\GitHub\OLED_096\oled096_drv\code\Projects\STM32F0xx_StdPeriph_Templates\EWARM\settings\Project.STM32F030.driver.xcl" 
 
 @echo off 
 :end

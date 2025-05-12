@@ -5,6 +5,9 @@
 #define OLED_CMD  0
 #define OLED_DATA 1
 
+#define PAGE_MODE 0
+#define HORIZONTAL_MODE 1
+#define VERTICAL_MODE 2
 
 typedef enum
 {
